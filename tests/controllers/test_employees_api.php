@@ -35,7 +35,7 @@ class test_employees_api extends CodeIgniterUnitTestCase {
 					);
 			$this->employee->add($data);    
 	    }
-}
+	}
 
 	/**
 	* Testing Testimonial Controller. 

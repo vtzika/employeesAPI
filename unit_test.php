@@ -26,16 +26,20 @@ require_once SIMPLETEST.'mock_objects.php';
 require_once SIMPLETEST.'collector.php';
 require_once SIMPLETEST.'web_tester.php';
 require_once SIMPLETEST.'extensions/my_reporter.php';
+
 require_once SIMPLETEST.'extensions/cli_reporter.php';
 
 $test_suite = new TestSuite();
+
 $test_suite->_label = 'CodeIgniter Test Suite';
+
 
 class CodeIgniterUnitTestCase extends UnitTestCase {
 	protected $_ci;
 
 	public function __construct($name = '')
 	{
+
 		parent::__construct($name);
 
 		$this->_ci =& get_instance();

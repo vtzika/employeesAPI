@@ -48,7 +48,17 @@ class EmployeesAPI  extends REST_Controller
             $this->response(NULL, 404);
         }
 
-        $this->response($data);
+        /*
+           xhr.setRequestHeader("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+                    xhr.setRequestHeader(;
+                    xhr.setRequestHeader("Access-Control-Allow-Methods", "GET,PUT,POST,DELETE");
+                    xhr.setRequestHeader("Content-Type", "text/plain");
+                    xhr.setRequestHeader("Access-Control-Allow-Credentials", "true");
+                    */
+
+
+       // $this->response->header("Access-Control-Allow-Origin: *");
+        $this->response($data, "Access-Control-Allow-Origin: *");
     }
 
     /**
@@ -60,8 +70,13 @@ class EmployeesAPI  extends REST_Controller
     {
     	$this->load->model('Employee', 'employees', 'True');
 		$employees = $this->employees->get_all_employees();
-         
-        if($employees)
+
+
+        //$this->response->header("Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept");
+        //$this->response->header("Access-Control-Allow-Origin: *");
+        //$this->response->header("Access-Control-Allow-Methods: GET,PUT,POST,DELETE");
+
+        if($employees)  
         {
 			$this->response($employees, 200);
 		}
@@ -74,10 +89,18 @@ class EmployeesAPI  extends REST_Controller
 
     function employee_post()
     {
-        $message = array('name' => $this->post('name'), 'description' => 'description', 'picture' => $this->post('picture'));
+        $message = array('name' => $this->post('name'), 'description' => $this->post('description'), 'picture' => $this->post('picture'));
         
         $this->response($message, 200); // 200 being the HTTP response code
     }
+
+    function employee_del_delete()
+    {
+        $data = array('returned: '. $this->delete('name'));
+
+        $this->response($data);
+    }
+    
     
 
 }
